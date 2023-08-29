@@ -2,8 +2,13 @@ package com.techelevator.model;
 
 public class Property {
     private int propertyId;
+    private int landlordId;
+    private int renter_id;
     private String bedrooms;
     private String bathrooms;
+    private int price;
+    private String address;
+    private boolean availability;
     private String propertyDesc;
     private String propertyImg;
 
@@ -11,10 +16,15 @@ public class Property {
     public Property() {
     }
 
-    public Property(int propertyId, String bedrooms, String bathrooms, String propertyDesc, String propertyImg) {
+    public Property(int propertyId, int landlordId, int renter_id, String bedrooms, String bathrooms, int price, String address, boolean availability, String propertyDesc, String propertyImg) {
         this.propertyId = propertyId;
+        this.landlordId = landlordId;
+        this.renter_id = renter_id;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
+        this.price = price;
+        this.address = address;
+        this.availability = availability;
         this.propertyDesc = propertyDesc;
         this.propertyImg = propertyImg;
     }
@@ -25,6 +35,22 @@ public class Property {
 
     public void setPropertyId(int propertyId) {
         this.propertyId = propertyId;
+    }
+
+    public int getLandlordId() {
+        return landlordId;
+    }
+
+    public void setLandlordId(int landlordId) {
+        this.landlordId = landlordId;
+    }
+
+    public int getRenter_id() {
+        return renter_id;
+    }
+
+    public void setRenter_id(int renter_id) {
+        this.renter_id = renter_id;
     }
 
     public String getBedrooms() {
@@ -41,6 +67,30 @@ public class Property {
 
     public void setBathrooms(String bathrooms) {
         this.bathrooms = bathrooms;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
     }
 
     public String getPropertyDesc() {
@@ -63,8 +113,13 @@ public class Property {
     public String toString() {
         return "Property{" +
                 "propertyId=" + propertyId +
+                ", landlordId=" + landlordId +
+                ", renter_id=" + renter_id +
                 ", bedrooms='" + bedrooms + '\'' +
                 ", bathrooms='" + bathrooms + '\'' +
+                ", price=" + price +
+                ", address='" + address + '\'' +
+                ", availability=" + availability +
                 ", propertyDesc='" + propertyDesc + '\'' +
                 ", propertyImg='" + propertyImg + '\'' +
                 '}';
