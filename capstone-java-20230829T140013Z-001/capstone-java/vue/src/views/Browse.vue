@@ -1,12 +1,9 @@
 <template>
-  <div>
-    <h1>Browse</h1>
+  <div class="browse">
+    
     <div class="cards">
-      <home-card
-        v-for="home in homes"
-        :key="home.homeId"
-        :home="home"
-      ></home-card>
+      <h1>Browse</h1>
+      <home-card />
     </div>
   </div>
 </template>
@@ -15,22 +12,10 @@
 import HomeCard from "../components/HomeCard.vue";
 export default {
   components: {
-    HomeCard,
+    HomeCard
   },
-  data() {
-    return {
-      homes: [],
-    };
-  },
-  methods: {
-    getHomes() {
-      this.homes = this.$store.getters.getHomes;
-    },
-  },
-  created() {
-    this.getHomes();
-  },
-};
+
+}
 </script>
 
 <style>
@@ -38,5 +23,15 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  grid-area: cards;
 }
+
+.browse{
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: 
+  ". cards .";
+}
+
+
 </style>

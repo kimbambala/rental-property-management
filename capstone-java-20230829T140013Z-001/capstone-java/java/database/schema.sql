@@ -38,6 +38,7 @@ CREATE TABLE property (
     renter_id int,
     bedrooms int NOT NULL,
     bathrooms int NOT NULL,
+    property_type varchar(20) NOT NULL,
     price int  NOT NULL,
     address varchar(100) NOT NULL,
     availability boolean NOT NULL,

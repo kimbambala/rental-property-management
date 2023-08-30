@@ -6,6 +6,7 @@ public class Property {
     private int renter_id;
     private String bedrooms;
     private String bathrooms;
+    private String propertyType;
     private int price;
     private String address;
     private boolean availability;
@@ -16,18 +17,21 @@ public class Property {
     public Property() {
     }
 
-    public Property(int propertyId, int landlordId, int renter_id, String bedrooms, String bathrooms, int price, String address, boolean availability, String propertyDesc, String propertyImg) {
+    public Property(int propertyId, int landlordId, int renter_id, String bedrooms, String bathrooms, String propertyType, int price, String address, boolean availability, String propertyDesc, String propertyImg) {
         this.propertyId = propertyId;
         this.landlordId = landlordId;
         this.renter_id = renter_id;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
+        this.propertyType = propertyType;
         this.price = price;
         this.address = address;
         this.availability = availability;
         this.propertyDesc = propertyDesc;
         this.propertyImg = propertyImg;
     }
+
+
 
     public int getPropertyId() {
         return propertyId;
@@ -67,6 +71,14 @@ public class Property {
 
     public void setBathrooms(String bathrooms) {
         this.bathrooms = bathrooms;
+    }
+
+    public String getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
     }
 
     public int getPrice() {
@@ -117,6 +129,7 @@ public class Property {
                 ", renter_id=" + renter_id +
                 ", bedrooms='" + bedrooms + '\'' +
                 ", bathrooms='" + bathrooms + '\'' +
+                ", propertyType='" + propertyType + '\'' +
                 ", price=" + price +
                 ", address='" + address + '\'' +
                 ", availability=" + availability +
