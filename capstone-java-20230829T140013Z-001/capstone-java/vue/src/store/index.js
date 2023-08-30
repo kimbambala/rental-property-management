@@ -44,6 +44,11 @@ export default new Vuex.Store({
       },
     ],
   },
+  getters: {
+    getHomes(state) {
+      return state.homes;
+    },
+  },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
