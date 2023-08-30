@@ -4,18 +4,38 @@
     <p>Bedrooms: {{ home.rooms }}</p>
     <p>Bathrooms: {{home.bathrooms}}</p>
     <p>${{home.rent}}</p>
+    <div v-for="property in properties" v-bind:key="property.propertyId">
+      <div class="bedrooms">Bedrooms:{{ property.bedrooms }}</div>
+      <div class="bathrooms">Bathrooms:{{ property.bathrooms }}</div>
+      <div class="price">Price: {{ property.price }}</div>
+      <div class="address">Adress: {{ property.address }}</div>
+      <div class="availability">Availability: {{ property.availability }}</div>
+      <div class="description">Description: {{ property.propertyDesc }}</div>
+      <div class="propertyImg"> <img v-bind:src="property.propertyImg" alt=""></div>
+    </div>
   </div>
 </template>
 
 <script>
+import PropertyService from '../services/PropertyService';
+
 export default {
   name: "house-card",
   props: {
     home: Object
   },
   data() {
-    return {};
+    return {
+      properties:[]
+    };
   },
+  created(){
+    PropertyService.getPropertyList().then((response)=>{
+      console.log(response.data);
+      this.properties = response.data;
+      
+    })
+  }
 };
 </script>
 
@@ -43,4 +63,11 @@ h1 {
   border: 3px solid black;
   transform: translateY(-5px);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
-}</style>
+}
+
+img{
+  width: 100%;
+  height: 100%
+}
+
+</style>

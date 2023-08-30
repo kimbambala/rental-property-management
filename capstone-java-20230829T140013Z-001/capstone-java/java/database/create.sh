@@ -1,5 +1,5 @@
 #!/bin/bash
-export PGPASSWORD='YOUR PG ADMIN PASSWORD'
+export PGPASSWORD='Princy123'
 BASEDIR=$(dirname $0)
 DATABASE=rental_property
 psql -U postgres -f "$BASEDIR/dropdb.sql" &&
