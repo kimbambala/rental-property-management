@@ -20,6 +20,7 @@
       <p>
       <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
+    <router-link v-bind:to="{name: 'browse'}">Browse Homes</router-link>
   </div>
 </template>
 

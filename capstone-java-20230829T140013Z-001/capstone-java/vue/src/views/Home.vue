@@ -10,3 +10,15 @@ export default {
   name: "home"
 };
 </script>
+<style>
+.home {
+  display: grid;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  
+}
+.home h1 {
+  text-align: center;
+}
+</style>
