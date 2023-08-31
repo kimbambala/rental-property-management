@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import DetailsView from '../views/DetailsView.vue'
+import AccountView from '../views/AccountView.vue'
 
 Vue.use(Router)
 
@@ -62,6 +63,15 @@ const router = new Router({
       component: DetailsView,
       meta: {
         requiresAuth: false
+      }
+    },
+
+    {
+      path: "/account/:id",
+      name: "account",
+      component: AccountView,
+      meta: {
+        requiresAuth: true
       }
     },
 

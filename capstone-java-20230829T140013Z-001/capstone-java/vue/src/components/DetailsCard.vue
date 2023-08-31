@@ -27,7 +27,7 @@
     },
     created(){
         const propertyId = this.$route.params.propertyId
-      PropertyService.getPropertyByPropertyId(propertyId).then((response)=>{
+        PropertyService.getPropertyByPropertyId(propertyId).then((response)=>{
         this.properties = response.data;
         console.log(response.data);
         

@@ -8,13 +8,13 @@
 
       </span>
 
-      <!--
+     
 
       <span class="profile">
-        <router-link v-bind:to="{ name: 'profile', params: {userId: this.$store.state.user.id} }"  v-if="$store.state.token != ''"><h1>Profile</h1></router-link>
+        <router-link v-bind:to="{ name: 'account', params: {id: this.$store.state.user.id} }"  v-if="$store.state.token != ''"><h1>My Account</h1></router-link>
 
       </span>
-      -->
+      
 
       <span class="login">
         <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == '' "><h1> Login</h1></router-link>
