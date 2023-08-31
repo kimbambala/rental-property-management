@@ -3,10 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.PropertyDao;
 import com.techelevator.model.Property;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -31,5 +28,15 @@ public class PropertyController {
             return propertyList;
         }
 
+    }
+
+    @GetMapping("/{propertyId}")
+    public Property getPropertyByPropertyId(@PathVariable int propertyId){
+        Property property = propertyDao.getPropertyByPropertyId(propertyId);
+        if(property == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No property found");
+        }else{
+            return property;
+        }
     }
 }

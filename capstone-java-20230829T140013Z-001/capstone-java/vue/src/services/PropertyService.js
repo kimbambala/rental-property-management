@@ -6,5 +6,9 @@ export default {
     return axios.get('/property')
   },
 
+  getPropertyByPropertyId(propertyId){
+    return axios.get('/property/' + propertyId)
+  }
+
 
 }

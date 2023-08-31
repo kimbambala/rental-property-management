@@ -5,7 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import Browse from '../views/Browse.vue'
+import DetailsView from '../views/DetailsView.vue'
 
 Vue.use(Router)
 
@@ -27,7 +27,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -54,14 +54,19 @@ const router = new Router({
         requiresAuth: false
       }
     },
+
+
     {
-      path: "/browse",
-      name: "browse",
-      component: Browse,
+      path: "/details/:propertyId",
+      name: "details",
+      component: DetailsView,
       meta: {
         requiresAuth: false
       }
-    }
+    },
+
+
+
   ]
 })
 

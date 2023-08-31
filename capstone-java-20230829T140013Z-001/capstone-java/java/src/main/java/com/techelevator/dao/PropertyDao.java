@@ -7,4 +7,5 @@ import java.util.List;
 public interface PropertyDao {
 
     List<Property> getPropertyList();
+    Property getPropertyByPropertyId(int propertyId);
 }

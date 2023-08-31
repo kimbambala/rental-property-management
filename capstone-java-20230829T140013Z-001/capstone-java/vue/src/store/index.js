@@ -20,29 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || "",
     user: currentUser || {},
-    homes: [
-      {
-        homeId: 1,
-        rooms: 2,
-        bathrooms: 1,
-        address: null,
-        rent: 800,
-      },
-      {
-        homeId: 2,
-        rooms: 2,
-        bathrooms: 2,
-        address: null,
-        rent: 1000,
-      },
-      {
-        homeId: 3,
-        rooms: 3,
-        bathrooms: 2,
-        address: null,
-        rent: 1200,
-      },
-    ],
+
   },
   getters: {
     getHomes(state) {
