@@ -17,6 +17,18 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
+
+
+      <div class="form-input-group">
+        <label for="role">Renter or Landlord?</label>
+        <select id="role"  v-model="user.role" required>
+          <option class="option-text" value="">--Please choose one--</option>
+          <option value="renter">Renter</option>
+          <option value="landlord">Landlord</option>
+          <option value="maintenance">Maintenance</option>
+        </select>
+      </div>
+
       <button type="submit">Create Account</button>
       <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
@@ -34,7 +46,7 @@ export default {
         username: '',
         password: '',
         confirmPassword: '',
-        role: 'user',
+        role: '',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -79,5 +91,10 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+}
+
+a{
+  text-decoration: none;
+  color: #2B2D42;
 }
 </style>

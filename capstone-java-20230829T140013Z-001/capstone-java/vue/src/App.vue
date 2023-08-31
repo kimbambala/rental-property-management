@@ -52,6 +52,7 @@ a{
 
 #app{
   font-family:sans-serif;
+  background-color: #EDF2F4;
 }
 
 a{

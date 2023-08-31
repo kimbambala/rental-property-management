@@ -77,7 +77,7 @@ label {
 
 a{
   text-decoration: none;
-  color: blue;
+  color: #2B2D42;
 }
     
 </style>

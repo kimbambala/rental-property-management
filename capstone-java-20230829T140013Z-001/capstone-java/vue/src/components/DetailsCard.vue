@@ -43,7 +43,7 @@
   .houseCard {
     border: 2px solid #2B2D42;
     border-radius: 10px;
-    background-color: #EDF2F4;
+    background-color: white;
     width: 800px;
     height: 1000px;
     margin: 20px;
