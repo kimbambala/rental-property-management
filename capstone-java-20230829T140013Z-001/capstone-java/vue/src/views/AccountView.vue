@@ -21,6 +21,10 @@
           </div>
         </button>
       </div>
+      <div class="my-listings" v-if="users.authorities[0].name === 'ROLE_LANDLORD'">
+        <my-listings />
+
+      </div>
     
       
     </div>  
@@ -28,8 +32,12 @@
   
   <script>
   import AuthService from '../services/AuthService';
+  import MyListings from '../components/MyListings.vue';
   
   export default {
+    components:{
+      MyListings
+    },
     name: "account",
     props: [
         "userId"

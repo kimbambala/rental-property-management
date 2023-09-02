@@ -68,4 +68,19 @@ public class PropertyController {
         }
 
     }
+
+    @PreAuthorize("hasRole('ROLE_LANDLORD')")
+    @DeleteMapping("/{propertyId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int propertyId){
+        propertyDao.delete(propertyId);
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_LANDLORD')")
+    @PutMapping({"/{propertyId}"})
+    public void edit(@PathVariable int propertyId, @RequestBody Property newProperty){
+        propertyDao.edit(propertyId, newProperty);
+
+    }
 }

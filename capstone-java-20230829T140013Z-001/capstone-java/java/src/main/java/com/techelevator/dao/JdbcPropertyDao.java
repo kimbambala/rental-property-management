@@ -101,6 +101,18 @@ public class JdbcPropertyDao implements PropertyDao{
         return  newProperty;
     }
 
+    @Override
+    public void delete(int propertyId) {
+        String sql = "DELETE FROM property WHERE property_id = ?";
+        jdbcTemplate.update(sql, propertyId);
+    }
+
+    @Override
+    public void edit(int propertyId, Property property) {
+        String sql = "UPDATE property SET bedrooms = ?, bathrooms = ?, property_type = ?, price = ?, address = ?, availability = ?, property_desc = ?, property_img = ? WHERE property_id = ? ";
+        jdbcTemplate.update(sql, property.getBedrooms(), property.getBathrooms(), property.getPropertyType(), property.getPrice(), property.getAddress(), property.isAvailability(), property.getPropertyDesc(), property.getPropertyImg(), propertyId );
+    }
+
 
     private Property mapRowToProperty(SqlRowSet rs){
         Property property = new Property();

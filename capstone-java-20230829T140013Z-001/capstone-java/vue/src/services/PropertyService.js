@@ -12,7 +12,10 @@ export default {
 
   listProperty(property){
     return axios.post("/property/", property)
+  },
 
+  getPropertiesByPropertyLandlordUserId(landlordUserId){
+    return axios.get('/property/my-properties/' + landlordUserId)
   },
 
 

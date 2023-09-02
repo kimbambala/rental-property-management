@@ -11,4 +11,7 @@ public interface PropertyDao {
     Property getPropertyByPropertyIdWithoutRenter(int propertyId);
     List<Property>getPropertyByLandlordUserId(int landlordUserId);
     Property create(Property property, String username);
+    void delete(int propertyId);
+    void edit(int propertyId, Property property);
+
 }
