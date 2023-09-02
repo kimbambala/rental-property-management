@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import DetailsView from '../views/DetailsView.vue'
 import AccountView from '../views/AccountView.vue'
+import CreateView from '../views/ListingView.vue'
 
 Vue.use(Router)
 
@@ -70,6 +71,15 @@ const router = new Router({
       path: "/account/:id",
       name: "account",
       component: AccountView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+    {
+      path: "/listings/create/:id",
+      name: "listings",
+      component: CreateView,
       meta: {
         requiresAuth: true
       }

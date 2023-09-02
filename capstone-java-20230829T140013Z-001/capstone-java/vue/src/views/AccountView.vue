@@ -8,21 +8,29 @@
 
         <div class="greeting-roles">
             <div class="greeting">Hello {{ $store.state.user.username }}!</div>
-            <div class="role">{{users.authorities[0].name === 'ROLE_RENTER' ? "Renter" : ""}}</div>
+            <div class="role">{{users.authorities[0].name === 'ROLE_RENTER' ? "Renter" : "" }}</div>
             <div class="role">{{users.authorities[0].name === 'ROLE_LANDLORD' ? "Landlord" : ""}}</div>
             <div class="role">{{users.authorities[0].name === 'ROLE_MAINTENANCE' ? "Maintenance" : ""}}</div>            
         </div>
       </div>
+
+      <div class="add-group" v-if="users.authorities[0].name === 'ROLE_LANDLORD'">
+        <button class="add-button">
+          <div class="add-text">
+            <router-link v-bind:to="{ name: 'listings'}"><p>Lista new property</p></router-link>
+          </div>
+        </button>
+      </div>
     
       
-    </div>
+    </div>  
   </template>
   
   <script>
   import AuthService from '../services/AuthService';
   
   export default {
-    name: "account-view",
+    name: "account",
     props: [
         "userId"
     ],
@@ -62,6 +70,16 @@ img{
 .greeting{
     font-weight: bold;
 }
+
+.add-text{
+    margin-top: 15px;
+    font-size: 15px;
+  }
+
+  .add-button{
+    background-color: green;
+  }
+
   
 
   

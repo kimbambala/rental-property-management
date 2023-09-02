@@ -2,10 +2,10 @@ package com.techelevator.model;
 
 public class Property {
     private int propertyId;
-    private int landlordId;
-    private int renter_id;
-    private String bedrooms;
-    private String bathrooms;
+    private int landlordUserId;
+    private Integer renterUserId;
+    private int bedrooms;
+    private int bathrooms;
     private String propertyType;
     private int price;
     private String address;
@@ -17,10 +17,10 @@ public class Property {
     public Property() {
     }
 
-    public Property(int propertyId, int landlordId, int renter_id, String bedrooms, String bathrooms, String propertyType, int price, String address, boolean availability, String propertyDesc, String propertyImg) {
+    public Property(int propertyId, int landlordUserId, int renterUserId, int bedrooms, int bathrooms, String propertyType, int price, String address, boolean availability, String propertyDesc, String propertyImg) {
         this.propertyId = propertyId;
-        this.landlordId = landlordId;
-        this.renter_id = renter_id;
+        this.landlordUserId = landlordUserId;
+        this.renterUserId = renterUserId;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
         this.propertyType = propertyType;
@@ -31,8 +31,6 @@ public class Property {
         this.propertyImg = propertyImg;
     }
 
-
-
     public int getPropertyId() {
         return propertyId;
     }
@@ -41,35 +39,35 @@ public class Property {
         this.propertyId = propertyId;
     }
 
-    public int getLandlordId() {
-        return landlordId;
+    public int getLandlordUserId() {
+        return landlordUserId;
     }
 
-    public void setLandlordId(int landlordId) {
-        this.landlordId = landlordId;
+    public void setLandlordUserId(int landlordUserId) {
+        this.landlordUserId = landlordUserId;
     }
 
-    public int getRenter_id() {
-        return renter_id;
+    public int getRenterUserId() {
+        return renterUserId;
     }
 
-    public void setRenter_id(int renter_id) {
-        this.renter_id = renter_id;
+    public void setRenterUserId(int renterUserId) {
+        this.renterUserId = renterUserId;
     }
 
-    public String getBedrooms() {
+    public int getBedrooms() {
         return bedrooms;
     }
 
-    public void setBedrooms(String bedrooms) {
+    public void setBedrooms(int bedrooms) {
         this.bedrooms = bedrooms;
     }
 
-    public String getBathrooms() {
+    public int getBathrooms() {
         return bathrooms;
     }
 
-    public void setBathrooms(String bathrooms) {
+    public void setBathrooms(int bathrooms) {
         this.bathrooms = bathrooms;
     }
 
@@ -125,10 +123,10 @@ public class Property {
     public String toString() {
         return "Property{" +
                 "propertyId=" + propertyId +
-                ", landlordId=" + landlordId +
-                ", renter_id=" + renter_id +
-                ", bedrooms='" + bedrooms + '\'' +
-                ", bathrooms='" + bathrooms + '\'' +
+                ", landlordUserId=" + landlordUserId +
+                ", renterUserId=" + renterUserId +
+                ", bedrooms=" + bedrooms +
+                ", bathrooms=" + bathrooms +
                 ", propertyType='" + propertyType + '\'' +
                 ", price=" + price +
                 ", address='" + address + '\'' +

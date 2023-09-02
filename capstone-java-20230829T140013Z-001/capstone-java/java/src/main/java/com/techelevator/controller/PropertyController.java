@@ -2,10 +2,13 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.PropertyDao;
 import com.techelevator.model.Property;
+import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -30,6 +33,16 @@ public class PropertyController {
 
     }
 
+    @GetMapping("/my-properties/{landlordUserId}")
+    public List<Property> getPropertyByLandlordUserId(@PathVariable int landlordUserId){
+        List<Property> propertyList = propertyDao.getPropertyByLandlordUserId(landlordUserId);
+        if(propertyList == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No property found");
+        }else{
+            return propertyList;
+        }
+    }
+
     @GetMapping("/{propertyId}")
     public Property getPropertyByPropertyId(@PathVariable int propertyId){
         Property property = propertyDao.getPropertyByPropertyId(propertyId);
@@ -38,5 +51,21 @@ public class PropertyController {
         }else{
             return property;
         }
+    }
+
+    @PreAuthorize("hasRole('ROLE_LANDLORD')")
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody Property newProperty, Principal principal){
+        try{
+            String username = principal.getName();
+            Property property = propertyDao.create(newProperty, username);
+            if (property == null){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Property registration failed.");
+            }
+        }catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Property registration failed.");
+        }
+
     }
 }

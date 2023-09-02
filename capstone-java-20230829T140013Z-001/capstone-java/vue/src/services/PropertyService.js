@@ -8,7 +8,12 @@ export default {
 
   getPropertyByPropertyId(propertyId){
     return axios.get('/property/' + propertyId)
-  }
+  },
+
+  listProperty(property){
+    return axios.post("/property/", property)
+
+  },
 
 
 }
