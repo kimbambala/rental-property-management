@@ -2,17 +2,17 @@
     <div class="main-card">  
 
         <main>
-            <h1>Add a new property to your account</h1>
+            <h1>Edit a property</h1>
 
             <div class="form-card">
-                <form v-on:submit.prevent="onListProperty()">
+                <form v-on:submit.prevent="editProperty(group)">
                     <div>
                         <label for="type">Property Type:</label>
                         <select id="type" name="propertyType" v-model="property.propertyType" required>
                             <option class="option-text" value="">--Please choose one--</option>
                             <option value="Apartment">Apartment</option>
                             <option value="House">House</option>
-                        </select>
+                        </select>                            
                     </div>
                     <div>
                         <label for="bedrooms">Number of bedrooms:</label>
@@ -40,6 +40,7 @@
 
                         </select>
                     </div>
+
                     <div>
                         <label for="prop-image">Image URL:</label>
                         <textarea  id="prop-image" name="propertyImg" v-model="property.propertyImg" required> </textarea>
@@ -51,7 +52,7 @@
                     </div>
 
 
-                    <button type="submit" value="Create Property">List Property </button>
+                    <button type="submit" value="Create Property">Edit Property </button>
                 </form>
         </div>
 
@@ -65,7 +66,7 @@ import PropertyService from '../services/PropertyService';
 
 
   export default {
-    name: "listings",
+    name: "edit-listing",
     props: [
         "userId"
     ],
@@ -88,13 +89,16 @@ import PropertyService from '../services/PropertyService';
            
         }
     },
-    created(){  
+    created(){ 
+        const propertyId = this.$route.params.propertyId;
+        PropertyService.getPropertyByPropertyId(propertyId).then((response)=>{
+            this.property = response.data;
+        }) 
 
     },         
     methods: {
-      onListProperty(){
-            PropertyService.listProperty(this.property).then((response)=>{
-                console.log(response.data);
+      editProperty(){
+            PropertyService.editProperty(this.property).then(()=>{
                 const route = {
                     name: "account",
                     params: {
@@ -113,7 +117,7 @@ import PropertyService from '../services/PropertyService';
   </script>
   <style scoped>
 
-main{
+  main{
     display: flex;
     flex-direction: column;
     align-items: center;

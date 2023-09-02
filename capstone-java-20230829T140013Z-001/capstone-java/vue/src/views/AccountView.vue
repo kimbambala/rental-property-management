@@ -17,7 +17,7 @@
       <div class="add-group" v-if="users.authorities[0].name === 'ROLE_LANDLORD'">
         <button class="add-button">
           <div class="add-text">
-            <router-link v-bind:to="{ name: 'listings'}"><p>Lista new property</p></router-link>
+            <router-link v-bind:to="{ name: 'listings'}"><p>List a new property</p></router-link>
           </div>
         </button>
       </div>

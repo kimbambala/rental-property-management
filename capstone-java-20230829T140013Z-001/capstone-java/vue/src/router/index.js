@@ -7,7 +7,8 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import DetailsView from '../views/DetailsView.vue'
 import AccountView from '../views/AccountView.vue'
-import CreateView from '../views/ListingView.vue'
+import ListingView from '../views/ListingView.vue'
+import EditListing from '../views/EditListing.vue'
 
 Vue.use(Router)
 
@@ -79,7 +80,16 @@ const router = new Router({
     {
       path: "/listings/create/:id",
       name: "listings",
-      component: CreateView,
+      component: ListingView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+    {
+      path: "/listings/edit/:propertyId",
+      name: "edit-listing",
+      component: EditListing,
       meta: {
         requiresAuth: true
       }

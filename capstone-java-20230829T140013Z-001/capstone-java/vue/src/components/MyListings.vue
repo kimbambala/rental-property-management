@@ -28,11 +28,11 @@
                 <td> 
                   <button class="edit">
                     <div class="edit-text">
-                     Edit Group
+                        <router-link v-bind:to="{ name: 'edit-listing', params:{propertyId: property.propertyId}}">Edit</router-link>
                     </div>
                   </button>
                 </td>
-                <td class="delete-itinerary"> <button class="delete" type="submit" value="Delete">Delete</button></td>             
+                <td class="delete-itinerary"> <button class="delete" type="submit" value="Delete" v-on:click="deleteProperty(property.propertyId)">Delete</button></td>             
             </tr>
         </tbody>
       </table>
@@ -67,10 +67,10 @@
 
     },
     methods: {
-      deleteGroup(propertyId){
+      deleteProperty(propertyId){
         PropertyService.deleteProperty(propertyId).then(()=>{
-          const index = this.groups.findIndex(i => i.propertyId == propertyId)
-          this.groups.splice(index, 1)
+          const index = this.properties.findIndex(i => i.propertyId == propertyId)
+          this.properties.splice(index, 1)
         })
       },
 
@@ -115,17 +115,13 @@
 
   .delete{
     background-color: red;
-    color: white
+    color: white;
   }
 
   .edit{
     background-color: yellow;
     color: white;
 
-  }
-
-  .edit-text{
-    margin-top: 15px;
   }
 
   a{
