@@ -9,6 +9,7 @@ import DetailsView from '../views/DetailsView.vue'
 import AccountView from '../views/AccountView.vue'
 import ListingView from '../views/ListingView.vue'
 import EditListing from '../views/EditListing.vue'
+import AssignRenter from '../views/AssignRenter.vue'
 
 Vue.use(Router)
 
@@ -90,6 +91,15 @@ const router = new Router({
       path: "/listings/edit/:propertyId",
       name: "edit-listing",
       component: EditListing,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+    {
+      path: "/listings/assign/:propertyId",
+      name: "assign-renter",
+      component: AssignRenter,
       meta: {
         requiresAuth: true
       }

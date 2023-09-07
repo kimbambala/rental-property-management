@@ -2,57 +2,19 @@
     <div class="main-card">  
 
         <main>
-            <h1>Edit a property</h1>
+            <h1>Assign a renter to the property</h1>
 
             <div class="form-card">
                 <form v-on:submit.prevent="editProperty(property)">
                     <div>
-                        <label for="type">Property Type:</label>
-                        <select id="type" name="propertyType" v-model="property.propertyType" required>
-                            <option class="option-text" value="">--Please choose one--</option>
-                            <option value="Apartment">Apartment</option>
-                            <option value="House">House</option>
+                        <label for="renter-id">Assign Renter:</label>
+                        <select id="renter-id" v-model="property.renterUserId" >
+                            <option v-for="user in users" v-bind:key="user.id" v-bind:value="user.id"> 
+                                {{user.id}}
+                            </option>
                         </select>                            
                     </div>
-                    <div>
-                        <label for="bedrooms">Number of bedrooms:</label>
-                        <input type="number" id="bedrooms" name="bedrooms" v-model="property.bedrooms" required>
-                    </div>
-                    <div>
-                        <label for="bathrooms">Number of bathrooms:</label>
-                        <input type="number" id="bathrooms" name="bathrooms" v-model="property.bathrooms" required>
-                    </div>
-
-                    <div>
-                        <label for="price">Price:</label>
-                        <input type="number" id="price" name="bathrooms" v-model="property.price" required>
-                    </div>
-                    <div>
-                        <label for="address">Adress:</label>
-                        <input type="text" id="address" name="adress" v-model="property.address" required>
-                    </div>
-
-                    <div>
-                        <label for="availability">Availability:</label>
-                        <select id="availability" name="availability" v-model="property.availability" required>
-                            <option class="option-text" value="true">True</option>
-                            <option value="false">False</option>
-
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="prop-image">Image URL:</label>
-                        <textarea  id="prop-image" name="propertyImg" v-model="property.propertyImg" required> </textarea>
-                    </div>
-
-                    <div>
-                        <label for="description">Description:</label>
-                        <textarea id="description" name="propertyDesc" v-model="property.propertyDesc" required> </textarea>
-                    </div>
-
-
-                    <button type="submit" value="Create Property">Edit Property </button>
+                    <button type="submit" value="Add Renter">Assign Renter</button>
                 </form>
         </div>
 
@@ -63,10 +25,11 @@
   
   <script>
 import PropertyService from '../services/PropertyService';
+import AuthService from '../services/AuthService';
 
 
   export default {
-    name: "edit-listing",
+    name: "assign-renter",
     props: [
         "userId"
     ],
@@ -75,8 +38,10 @@ import PropertyService from '../services/PropertyService';
         return {
 
             users: [],
+            properties:[],
 
             property: {
+                renterUserId: 0,
                 bedrooms: 1,
                 bathrooms: 1,
                 propertyType: "",
@@ -90,10 +55,16 @@ import PropertyService from '../services/PropertyService';
         }
     },
     created(){ 
+
         const propertyId = this.$route.params.propertyId;
         PropertyService.getPropertyByPropertyId(propertyId).then((response)=>{
             this.property = response.data;
         }) 
+
+        AuthService.getUsers().then((response)=>{
+            console.log(response.data);
+            this.users = response.data;
+        })
 
     },         
     methods: {
@@ -101,8 +72,7 @@ import PropertyService from '../services/PropertyService';
             PropertyService.editProperty(property).then(()=>{
                 const route = {
                     name: "account",
-                    params: {
-                        
+                    params: {   
                         userId: this.$store.state.user.id,
                     }
                 };

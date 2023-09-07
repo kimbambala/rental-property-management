@@ -24,7 +24,12 @@
                 <td class="property-price">${{ property.price }} </td>
                 <td class="property-availability">{{ property.availability }}</td>
                 <td class="property-renter">{{ property.renterUserId }}</td>
-                <td>Assign Renter</td>
+                <td>
+                  <button class="assign-renter">
+                    <router-link v-bind:to="{ name: 'assign-renter', params:{propertyId: property.propertyId}}">Assign Renter</router-link>
+                  </button>
+
+                </td>
                 <td> 
                   <button class="edit">
                     <div class="edit-text">
