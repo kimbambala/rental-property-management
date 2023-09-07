@@ -116,6 +116,7 @@
   .delete{
     background-color: red;
     color: white;
+    cursor: pointer;
   }
 
   .edit{
