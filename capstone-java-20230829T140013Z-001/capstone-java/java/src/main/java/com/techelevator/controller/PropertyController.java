@@ -83,4 +83,11 @@ public class PropertyController {
         propertyDao.edit(propertyId, newProperty);
 
     }
+
+    @PreAuthorize("hasRole('ROLE_LANDLORD')")
+    @PutMapping({"/assign/{propertyId}"})
+    public void addRenter(@PathVariable int propertyId, @RequestBody Property newProperty){
+        propertyDao.addRenter(propertyId, newProperty);
+
+    }
 }

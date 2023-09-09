@@ -24,6 +24,10 @@ export default {
 
   editProperty(property){
     return axios.put('property/' + property.propertyId, property)
+  },
+
+  addRenter(property){
+    return axios.put('property/assign/' + property.propertyId, property)
   }
 
 

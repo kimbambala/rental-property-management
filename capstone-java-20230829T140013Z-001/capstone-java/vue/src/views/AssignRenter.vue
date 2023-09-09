@@ -5,12 +5,12 @@
             <h1>Assign a renter to the property</h1>
 
             <div class="form-card">
-                <form v-on:submit.prevent="editProperty(property)">
+                <form v-on:submit.prevent="addRenter(property)">
                     <div>
                         <label for="renter-id">Assign Renter:</label>
                         <select id="renter-id" v-model="property.renterUserId" >
                             <option v-for="user in users" v-bind:key="user.id" v-bind:value="user.id"> 
-                                {{user.id}}
+                                {{user.username}}
                             </option>
                         </select>                            
                     </div>
@@ -20,7 +20,7 @@
 
         </main>
 
-    </div>
+    </div> 
   </template>
   
   <script>
@@ -68,8 +68,8 @@ import AuthService from '../services/AuthService';
 
     },         
     methods: {
-      editProperty(property){
-            PropertyService.editProperty(property).then(()=>{
+      addRenter(property){
+            PropertyService.addRenter(property).then(()=>{
                 const route = {
                     name: "account",
                     params: {   
