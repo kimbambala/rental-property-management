@@ -11,6 +11,7 @@
             <th>Availability</th>
             <th>Renter Id</th>
             <th>Assign Renter</th>
+            <th>Un-assign Renter</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -30,14 +31,17 @@
                   </button>
 
                 </td>
+                <td>
+                  <button class="remove" type="submit" value="Remove" v-on:click="removeRenter(property.propertyId)">Un-assign Renter</button>
+                </td>
                 <td> 
                   <button class="edit">
                     <div class="edit-text">
-                        <router-link v-bind:to="{ name: 'edit-listing', params:{propertyId: property.propertyId}}">Edit</router-link>
+                        <router-link v-bind:to="{ name: 'edit-listing', params:{propertyId: property.propertyId}}">Edit Property</router-link>
                     </div>
                   </button>
                 </td>
-                <td class="delete-itinerary"> <button class="delete" type="submit" value="Delete" v-on:click="deleteProperty(property.propertyId)">Delete</button></td>             
+                <td class="delete-itinerary"> <button class="delete" type="submit" value="Delete" v-on:click="deleteProperty(property.propertyId)">Delete Property</button></td>             
             </tr>
         </tbody>
       </table>
@@ -76,6 +80,12 @@
         PropertyService.deleteProperty(propertyId).then(()=>{
           const index = this.properties.findIndex(i => i.propertyId == propertyId)
           this.properties.splice(index, 1)
+        })
+      },
+
+      removeRenter(propertyId){
+        PropertyService.removeRenter(propertyId).then(()=>{
+          window.location.reload();
         })
       },
 

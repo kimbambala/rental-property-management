@@ -97,4 +97,5 @@ public class PropertyController {
         propertyDao.removeRenter(propertyId);
 
     }
+
 }

@@ -83,5 +83,17 @@ public class AuthenticationController {
         }
     }
 
+
+    @GetMapping("/users/role/renters")
+    public List<User> getRentersList(){
+        List<User> renterList = userDao.getRentersList();
+
+        if (renterList == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Renters not available");
+        }else {
+            return renterList;
+        }
+    }
+
 }
 

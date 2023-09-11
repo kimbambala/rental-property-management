@@ -28,6 +28,10 @@ export default {
 
   addRenter(property){
     return axios.put('property/assign/' + property.propertyId, property)
+  },
+
+  removeRenter(propertyId){
+    return axios.put('property/un-assign/' + propertyId)
   }
 
 

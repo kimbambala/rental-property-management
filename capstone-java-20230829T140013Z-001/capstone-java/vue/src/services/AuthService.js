@@ -14,6 +14,11 @@ export default {
     return axios.get('/users')
   },
 
+  getRenterList(){
+    return axios.get('/users/role/renters')
+  },
+
+
   getUserById(id){
     return axios.get('/users/' + id)
   }

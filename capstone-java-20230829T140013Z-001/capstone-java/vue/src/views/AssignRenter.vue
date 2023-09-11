@@ -61,7 +61,7 @@ import AuthService from '../services/AuthService';
             this.property = response.data;
         }) 
 
-        AuthService.getUsers().then((response)=>{
+        AuthService.getRenterList().then((response)=>{
             console.log(response.data);
             this.users = response.data;
         })
