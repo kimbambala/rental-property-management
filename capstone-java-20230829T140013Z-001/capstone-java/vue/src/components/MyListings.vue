@@ -23,16 +23,16 @@
                 <td class="property-beddrooms">{{ property.bedrooms }}</td>
                 <td class="property-bathrooms">{{ property.bathrooms }}</td>
                 <td class="property-price">${{ property.price }} </td>
-                <td class="property-availability">{{ property.availability }}</td>
+                <td class="property-availability">{{ property.renterUserId === 0 ? 'Available': 'Rented' }}</td>
                 <td class="property-renter">{{ property.renterUserId }}</td>
                 <td>
-                  <button class="assign-renter">
+                  <button class="assign-renter" v-if="property.renterUserId === 0">
                     <router-link v-bind:to="{ name: 'assign-renter', params:{propertyId: property.propertyId}}">Assign Renter</router-link>
                   </button>
 
                 </td>
                 <td>
-                  <button class="remove" type="submit" value="Remove" v-on:click="removeRenter(property.propertyId)">Un-assign Renter</button>
+                  <button v-if="property.renterUserId !== 0" class="remove" type="submit" value="Remove" v-on:click="removeRenter(property.propertyId)">Un-assign Renter</button>
                 </td>
                 <td> 
                   <button class="edit">
@@ -125,6 +125,7 @@
     justify-content: center;
     align-items: center;
     height: 40px;
+    cursor: pointer;
 
   }
 
