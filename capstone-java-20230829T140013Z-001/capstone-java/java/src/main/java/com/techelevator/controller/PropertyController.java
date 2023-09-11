@@ -90,4 +90,11 @@ public class PropertyController {
         propertyDao.addRenter(propertyId, newProperty);
 
     }
+
+    @PreAuthorize("hasRole('ROLE_LANDLORD')")
+    @PutMapping("/un-assign/{propertyId}")
+    public void removeRenter(@PathVariable int propertyId){
+        propertyDao.removeRenter(propertyId);
+
+    }
 }

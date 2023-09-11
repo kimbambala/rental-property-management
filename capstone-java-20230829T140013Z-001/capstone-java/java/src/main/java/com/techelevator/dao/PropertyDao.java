@@ -14,5 +14,6 @@ public interface PropertyDao {
     void delete(int propertyId);
     void edit(int propertyId, Property property);
     void addRenter(int propertyId, Property property);
+    void removeRenter(int propertyId);
 
 }

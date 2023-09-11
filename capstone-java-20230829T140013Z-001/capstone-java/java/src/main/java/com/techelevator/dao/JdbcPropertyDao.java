@@ -115,10 +115,24 @@ public class JdbcPropertyDao implements PropertyDao{
 
     @Override
     public void addRenter(int propertyId, Property property) {
-        String sql = "UPDATE property SET renter_user_id = ?  WHERE property_id = ? ";
-        jdbcTemplate.update(sql, property.getRenterUserId(), propertyId );
+        try{
+            String sql = "UPDATE property SET renter_user_id = ?  WHERE property_id = ? ";
+            jdbcTemplate.update(sql, property.getRenterUserId(), propertyId );
+        }catch (Exception ex){
+            System.out.println("Renter cannot be assigned to multiple properties");
+        }
+
     }
 
+    @Override
+    public void removeRenter(int propertyId) {
+        try{
+            String sql = "UPDATE property SET renter_user_id = null  WHERE property_id = ? ";
+            jdbcTemplate.update(sql, propertyId);
+        }catch (Exception ex){
+            System.out.println("This property does not have a renter assigned");
+        }
+    }
 
 
     private Property mapRowToProperty(SqlRowSet rs){
