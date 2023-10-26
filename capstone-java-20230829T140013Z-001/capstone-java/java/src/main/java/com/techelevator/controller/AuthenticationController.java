@@ -18,6 +18,8 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class AuthenticationController {
@@ -57,6 +59,39 @@ public class AuthenticationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
         } catch (UsernameNotFoundException e) {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+        }
+    }
+
+    @GetMapping("/users")
+    public List<User> findAll() {
+        List<User> userList = userDao.findAll();
+
+        if(userList == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No users found");
+        }else{
+            return userList;
+        }
+    }
+
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable int id){
+        User user = userDao.getUserById(id);
+        if(user == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No property found");
+        }else{
+            return user;
+        }
+    }
+
+
+    @GetMapping("/users/role/renters")
+    public List<User> getRentersList(){
+        List<User> renterList = userDao.getRentersList();
+
+        if (renterList == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Renters not available");
+        }else {
+            return renterList;
         }
     }
 

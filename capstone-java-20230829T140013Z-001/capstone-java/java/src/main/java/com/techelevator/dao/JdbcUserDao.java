@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.Property;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -61,6 +62,9 @@ public class JdbcUserDao implements UserDao {
         return users;
     }
 
+
+
+
     @Override
     public User findByUsername(String username) {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
@@ -80,6 +84,20 @@ public class JdbcUserDao implements UserDao {
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
         return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+    }
+
+    @Override
+    public List<User> getRentersList() {
+        List<User> users = new ArrayList<>();
+        String sql = "select * from users where role = 'ROLE_RENTER'";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            User user = mapRowToUser(results);
+            users.add(user);
+        }
+
+        return users;
     }
 
     private User mapRowToUser(SqlRowSet rs) {

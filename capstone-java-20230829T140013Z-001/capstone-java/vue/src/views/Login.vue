@@ -20,7 +20,7 @@
       <p>
       <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
-    <router-link v-bind:to="{name: 'browse'}">Browse Homes</router-link>
+  
   </div>
 </template>
 
@@ -69,4 +69,15 @@ export default {
 label {
   margin-right: 0.5rem;
 }
+
+#login{
+    color: rgb(49, 49, 49);
+    font-family:  sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: #2B2D42;
+}
+    
 </style>

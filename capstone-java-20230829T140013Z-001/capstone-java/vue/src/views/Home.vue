@@ -1,24 +1,37 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+  <div class="browse">
+    
+    <div class="cards">
+      <h1>Browse</h1>
+      <home-card />
+    </div>
   </div>
 </template>
 
 <script>
+import HomeCard from "../components/HomeCard.vue";
 export default {
-  name: "home"
-};
+  components: {
+    HomeCard
+  },
+
+}
 </script>
+
 <style>
-.home {
-  display: grid;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  
+  grid-area: cards;
 }
-.home h1 {
-  text-align: center;
+
+.browse{
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: 
+  ". cards .";
 }
+
+
 </style>

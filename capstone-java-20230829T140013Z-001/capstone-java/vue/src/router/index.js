@@ -5,7 +5,11 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import Browse from '../views/Browse.vue'
+import DetailsView from '../views/DetailsView.vue'
+import AccountView from '../views/AccountView.vue'
+import ListingView from '../views/ListingView.vue'
+import EditListing from '../views/EditListing.vue'
+import AssignRenter from '../views/AssignRenter.vue'
 
 Vue.use(Router)
 
@@ -27,7 +31,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -54,14 +58,55 @@ const router = new Router({
         requiresAuth: false
       }
     },
+
+
     {
-      path: "/browse",
-      name: "browse",
-      component: Browse,
+      path: "/details/:propertyId",
+      name: "details",
+      component: DetailsView,
       meta: {
         requiresAuth: false
       }
-    }
+    },
+
+    {
+      path: "/account/:id",
+      name: "account",
+      component: AccountView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+    {
+      path: "/listings/create/:id",
+      name: "listings",
+      component: ListingView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+    {
+      path: "/listings/edit/:propertyId",
+      name: "edit-listing",
+      component: EditListing,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+    {
+      path: "/listings/assign/:propertyId",
+      name: "assign-renter",
+      component: AssignRenter,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+
+
   ]
 })
 
