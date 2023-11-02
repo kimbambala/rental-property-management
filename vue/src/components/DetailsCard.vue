@@ -3,6 +3,12 @@
       
       <div class="houseCard" >
         <div class="propertyImg"> <img v-bind:src="properties.propertyImg" alt=""> </div>
+        <button class="btn">
+          <router-link v-bind:to="{ name: 'rent-unit'}">Rent Property</router-link>
+        </button>
+        <button class="btn2">
+          <router-link v-bind:to="{ name: 'contact-owner'}">Contact Owner</router-link>
+        </button>
         <div class="bedrooms">Bedrooms:{{ properties.bedrooms }} </div>
         <div class="bathrooms">Bathrooms:{{ properties.bathrooms }}</div>
         <div class="price">Price: ${{ properties.price }}</div>
@@ -49,14 +55,52 @@
     margin: 20px;
     display: grid;
     bottom: 40px;
-    left: 10%;
+    left: 0%;
     font-size: 1rem;
     place-items: center;
     text-decoration: none;
     transition: border 0.2s ease, transform 0.3s ease-in-out;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    position: relative;
    
   }
+
+  .btn {
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn2 {
+  position: absolute;
+  top: 5%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: black;
+}
+.btn2:hover {
+  background-color: black;
+}
   .houseCard:hover {
     border: 3px solid black;
     transform: translateY(-5px);

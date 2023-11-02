@@ -10,6 +10,8 @@ import AccountView from '../views/AccountView.vue'
 import ListingView from '../views/ListingView.vue'
 import EditListing from '../views/EditListing.vue'
 import AssignRenter from '../views/AssignRenter.vue'
+import ContactOwner from '../views/ContactOwnerView.vue'
+import RentUnitView from '../views/RentUnitView'
 
 Vue.use(Router)
 
@@ -103,6 +105,26 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+
+    {
+      path: "/contact-owner",
+      name: "contact-owner",
+      component: ContactOwner,
+      meta: {
+        requiresAuth: true
+      }
+
+    },
+
+    {
+      path: "/rent-unit",
+      name: "rent-unit",
+      component: RentUnitView,
+      meta: {
+        requiresAuth: true
+      }
+
     },
 
 

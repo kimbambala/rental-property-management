@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS  property, users;
+DROP TABLE IF EXISTS  property, account, users;
+DROP SEQUENCE IF EXISTS seq_account_id;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -8,6 +9,19 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
+);
+
+CREATE SEQUENCE seq_account_id
+  INCREMENT BY 1
+  START WITH 2001
+  NO MAXVALUE;
+
+CREATE TABLE account (
+	account_id int NOT NULL DEFAULT nextval('seq_account_id'),
+	user_id int NOT NULL,
+	balance int NOT NULL,
+	CONSTRAINT PK_account PRIMARY KEY (account_id),
+	CONSTRAINT FK_account_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
 
