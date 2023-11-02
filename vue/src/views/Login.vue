@@ -79,5 +79,9 @@ a{
   text-decoration: none;
   color: #2B2D42;
 }
+
+form{
+  text-align: center;
+}
     
 </style>

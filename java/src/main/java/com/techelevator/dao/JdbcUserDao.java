@@ -1,11 +1,16 @@
 package com.techelevator.dao;
 
+import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Property;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,6 +22,7 @@ import com.techelevator.model.User;
 @Component
 public class JdbcUserDao implements UserDao {
 
+    private static final int STARTING_BALANCE = 20000;
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
@@ -78,12 +84,30 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public boolean create(String username, String password, String role) {
-        String insertUserSql = "insert into users (username,password_hash,role) values (?,?,?)";
+    public User create(String username, String password, String role) {
+        User newUser = null;
+
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        String insertUserSql = "INSERT INTO USERS (username,password_hash,role) VALUES (?,?,?) RETURNING user_id";
+
+        try{
+            int newUserId = jdbcTemplate.queryForObject(insertUserSql, int.class, username, password_hash, ssRole);
+            newUser = getUserById(newUserId);
+            if (newUser != null) {
+                // create account
+                insertUserSql = "INSERT INTO account (user_id, balance) VALUES (?, ?)";
+                jdbcTemplate.update(insertUserSql, newUserId, STARTING_BALANCE);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
+       // return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        return newUser;
     }
 
     @Override
