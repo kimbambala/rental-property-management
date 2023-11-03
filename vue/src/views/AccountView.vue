@@ -25,6 +25,11 @@
         <my-listings />
 
       </div>
+
+      <div class="my-rental" v-if="users.authorities[0].name === 'ROLE_RENTER'">
+        <my-rental />
+
+      </div>
     
       
     </div>  
@@ -33,10 +38,11 @@
   <script>
   import AuthService from '../services/AuthService';
   import MyListings from '../components/MyListings.vue';
+  import MyRental from '../components/MyRental.vue';
   
   export default {
     components:{
-      MyListings
+      MyListings, MyRental
     },
     name: "account",
     props: [

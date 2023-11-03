@@ -18,6 +18,10 @@ export default {
     return axios.get('/property/my-properties/' + landlordUserId)
   },
 
+  getPropertiesByPropertyRenterUserId(renterUserId){
+    return axios.get('/property/renter/' + renterUserId)
+  },
+
   deleteProperty(propertyId){
     return axios.delete('/property/' + propertyId)
   },
