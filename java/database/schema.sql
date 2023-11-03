@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS  property, account, users;
-DROP SEQUENCE IF EXISTS seq_account_id;
+DROP TABLE IF EXISTS  property, rent, account, users;
+DROP SEQUENCE IF EXISTS seq_account_id, seq_rent_id;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -22,6 +22,23 @@ CREATE TABLE account (
 	balance decimal(13, 2) NOT NULL,
 	CONSTRAINT PK_account PRIMARY KEY (account_id),
 	CONSTRAINT FK_account_user FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
+
+CREATE SEQUENCE seq_rent_id
+  INCREMENT BY 1
+  START WITH 3001
+  NO MAXVALUE;
+
+CREATE TABLE rent (
+	rent_id int NOT NULL DEFAULT nextval('seq_rent_id'),
+	account_from int NOT NULL,
+	account_to int NOT NULL,
+	amount decimal(13, 2) NOT NULL,
+	CONSTRAINT PK_rent PRIMARY KEY (rent_id),
+	CONSTRAINT FK_rent_account_from FOREIGN KEY (account_from) REFERENCES account (account_id),
+	CONSTRAINT FK_rent_account_to FOREIGN KEY (account_to) REFERENCES account (account_id),
+	CONSTRAINT CK_rent_not_same_account CHECK (account_from <> account_to),
+	CONSTRAINT CK_rent_amount_gt_0 CHECK (amount > 0)
 );
 
 
