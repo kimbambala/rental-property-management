@@ -42,6 +42,16 @@ public class PropertyController {
             return propertyList;
         }
     }
+    @GetMapping("/renter/{renterUserId}")
+    public Property getPropertyByRenterUserId(@PathVariable int renterUserId){
+        Property property = propertyDao.getPropertyByRenterUserId(renterUserId);
+        if (property == null){
+            throw  new ResponseStatusException(HttpStatus.NOT_FOUND, "No property found");
+        }else {
+            return property;
+        }
+
+    }
 
     @GetMapping("/{propertyId}")
     public Property getPropertyByPropertyId(@PathVariable int propertyId){

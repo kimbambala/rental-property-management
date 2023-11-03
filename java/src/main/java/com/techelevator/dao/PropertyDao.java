@@ -10,6 +10,7 @@ public interface PropertyDao {
     Property getPropertyByPropertyId(int propertyId);
     Property getPropertyByPropertyIdWithoutRenter(int propertyId);
     List<Property>getPropertyByLandlordUserId(int landlordUserId);
+    Property getPropertyByRenterUserId(int RenterUserId);
     Property create(Property property, String username);
     void delete(int propertyId);
     void edit(int propertyId, Property property);

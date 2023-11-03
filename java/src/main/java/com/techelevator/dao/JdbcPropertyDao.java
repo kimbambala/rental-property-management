@@ -85,6 +85,25 @@ public class JdbcPropertyDao implements PropertyDao{
     }
 
     @Override
+    public Property getPropertyByRenterUserId(int renterUserId) {
+        Property property = null;
+
+        String sql = "SELECT property_id, landlord_user_id, renter_user_id, bedrooms, bathrooms, property_type, price, address, availability, property_desc, property_img " +
+                "FROM property WHERE renter_user_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, renterUserId);
+
+        try{
+            if(result.next()){
+                property = mapRowToProperty(result);
+            }
+        }catch (Exception ex){
+            System.out.println("Something went wrong");
+        }
+        return property;
+
+    }
+
+    @Override
     public Property create(Property property, String username) {
         Property newProperty = null;
 
