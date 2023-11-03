@@ -143,7 +143,7 @@ public class JdbcPropertyDao implements PropertyDao{
         property.setBedrooms(rs.getInt("bedrooms"));
         property.setBathrooms(rs.getInt("bathrooms"));
         property.setPropertyType(rs.getString("property_type"));
-        property.setPrice(rs.getInt("price"));
+        property.setPrice(rs.getBigDecimal("price"));
         property.setAddress(rs.getString("address"));
         property.setAvailability(rs.getBoolean("availability"));
         property.setPropertyDesc(rs.getString("property_desc"));
@@ -159,7 +159,7 @@ public class JdbcPropertyDao implements PropertyDao{
         property.setBedrooms(rs.getInt("bedrooms"));
         property.setBathrooms(rs.getInt("bathrooms"));
         property.setPropertyType(rs.getString("property_type"));
-        property.setPrice(rs.getInt("price"));
+        property.setPrice(rs.getBigDecimal("price"));
         property.setAddress(rs.getString("address"));
         property.setAvailability(rs.getBoolean("availability"));
         property.setPropertyDesc(rs.getString("property_desc"));

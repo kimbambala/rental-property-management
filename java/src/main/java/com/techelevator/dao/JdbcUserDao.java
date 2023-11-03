@@ -22,7 +22,7 @@ import com.techelevator.model.User;
 @Component
 public class JdbcUserDao implements UserDao {
 
-    private static final int STARTING_BALANCE = 20000;
+    private static final BigDecimal STARTING_BALANCE = new BigDecimal(20000.00);
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {

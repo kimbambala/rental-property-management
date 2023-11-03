@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.math.BigDecimal;
+
 public class Property {
     private int propertyId;
     private int landlordUserId;
@@ -7,7 +9,7 @@ public class Property {
     private int bedrooms;
     private int bathrooms;
     private String propertyType;
-    private int price;
+    private BigDecimal price;
     private String address;
     private boolean availability;
     private String propertyDesc;
@@ -17,7 +19,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(int propertyId, int landlordUserId, int renterUserId, int bedrooms, int bathrooms, String propertyType, int price, String address, boolean availability, String propertyDesc, String propertyImg) {
+    public Property(int propertyId, int landlordUserId, int renterUserId, int bedrooms, int bathrooms, String propertyType, BigDecimal price, String address, boolean availability, String propertyDesc, String propertyImg) {
         this.propertyId = propertyId;
         this.landlordUserId = landlordUserId;
         this.renterUserId = renterUserId;
@@ -79,11 +81,11 @@ public class Property {
         this.propertyType = propertyType;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
