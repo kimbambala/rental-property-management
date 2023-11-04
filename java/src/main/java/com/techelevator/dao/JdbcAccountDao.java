@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Account;
+import com.techelevator.model.Rent;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -76,18 +77,46 @@ public class JdbcAccountDao implements AccountDao{
     public Account depositToAccount(int accountId, BigDecimal amount) {
         Account account = getAccountById(accountId);
         BigDecimal balance = account.getBalance();
-        BigDecimal remainingBalance = balance.add(amount);
+        BigDecimal newBalance = balance.add(amount);
 
         String sql = "UPDATE account SET balance = ? WHERE account_id = ?";
         try {
 
-            jdbcTemplate.update(sql, remainingBalance, accountId );
+            jdbcTemplate.update(sql, newBalance, accountId );
 
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server / database");
         }
 
         return account;
+    }
+
+    @Override
+    public void accountTransaction(int accountFrom, int accountTo, BigDecimal amount) {
+
+        Account renter = getAccountById(accountFrom);
+        Account owner = getAccountById(accountTo);
+
+
+        BigDecimal renterBalance = renter.getBalance();
+        BigDecimal ownerBalance = owner.getBalance();
+
+        BigDecimal renterRemainingBalance = renterBalance.subtract(amount);
+        BigDecimal ownerNewBalance = ownerBalance.add(amount);
+
+        String sql = "UPDATE account SET balance = ? WHERE account_id = ?";
+        String sql2 = "UPDATE account SET balance = ? WHERE account_id = ?";
+        try {
+
+            jdbcTemplate.update(sql, renterRemainingBalance, accountFrom);
+
+            jdbcTemplate.update(sql2, ownerNewBalance, accountTo);
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server / database");
+        }
+
+
     }
 
 

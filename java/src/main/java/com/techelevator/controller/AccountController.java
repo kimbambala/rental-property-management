@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.AccountDao;
 import com.techelevator.model.Account;
+import com.techelevator.model.Rent;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -56,5 +57,11 @@ public class AccountController {
         Account account = accountDao.depositToAccount(currentUserAccountId, amount);
 
         return account;
+    }
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{accountFrom}/{accountTo}")
+    public void accountTransaction(@PathVariable int accountFrom, @PathVariable int accountTo, @RequestBody Rent rent){
+        BigDecimal amount = rent.getAmount();
+        accountDao.accountTransaction(accountFrom, accountTo, amount);
     }
 }
