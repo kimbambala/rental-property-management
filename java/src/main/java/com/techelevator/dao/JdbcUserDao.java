@@ -124,6 +124,20 @@ public class JdbcUserDao implements UserDao {
         return users;
     }
 
+    @Override
+    public List<User> getOwnerList() {
+        List<User> users = new ArrayList<>();
+        String sql = "select * from users where role = 'ROLE_OWNER'";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            User user = mapRowToUser(results);
+            users.add(user);
+        }
+
+        return users;
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

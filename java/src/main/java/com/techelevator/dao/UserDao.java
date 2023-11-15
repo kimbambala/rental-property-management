@@ -17,4 +17,5 @@ public interface UserDao {
     User create(String username, String password, String role);
 
     List<User> getRentersList();
+    List<User> getOwnerList();
 }

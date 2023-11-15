@@ -9,7 +9,8 @@
         <div class="mb-3">
           <div>To:</div>
           <label for="exampleFormControlInput1" class="form-label"></label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          <input type="email" class="form-control" id="exampleFormControlInput1" v-model="properties.landlordUserId">
+        
         </div>
         <div class="mb-3">
           <br>
@@ -25,10 +26,23 @@
   </template>
   
   <script>
+  import PropertyService from '../services/PropertyService';
+
   export default {
     name: "contact-owner",
-  
-  
+    data() {
+      return {
+        properties:[]
+      };
+    },
+    created(){
+        const propertyId = this.$route.params.propertyId
+        PropertyService.getPropertyByPropertyId(propertyId).then((response)=>{
+        this.properties = response.data;
+        console.log(response.data);
+        
+      })
+    }
   }
   </script>
 <style scoped>

@@ -108,7 +108,7 @@ const router = new Router({
     },
 
     {
-      path: "/contact-owner",
+      path: "/contact-owner/:propertyId",
       name: "contact-owner",
       component: ContactOwner,
       meta: {
